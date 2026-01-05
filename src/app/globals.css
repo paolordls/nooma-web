@@ -1,26 +1,270 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/* ═══════════════════════════════════════════════════════════════════
+   NOOMA — Burgundy Editorial Design System
+   Sleek, warm, Claude-inspired aesthetic
+   ═══════════════════════════════════════════════════════════════════ */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-newsreader);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-light: var(--burgundy-light);
+  --color-burgundy-dark: var(--burgundy-dark);
+  --color-cream: var(--cream);
+  --color-warm-gray: var(--warm-gray);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.5rem;
+
+  /* Warm cream background - like fine paper */
+  --background: oklch(0.985 0.006 85);
+  --foreground: oklch(0.20 0.02 30);
+
+  /* Cards - pure white with presence */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.20 0.02 30);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.20 0.02 30);
+
+  /* Primary - Rich burgundy */
+  --primary: oklch(0.38 0.12 15);
+  --primary-foreground: oklch(0.98 0.005 85);
+
+  /* Secondary - Soft warm gray */
+  --secondary: oklch(0.96 0.004 85);
+  --secondary-foreground: oklch(0.25 0.02 30);
+
+  /* Muted - Warm neutrals */
+  --muted: oklch(0.96 0.004 85);
+  --muted-foreground: oklch(0.50 0.01 60);
+
+  /* Accent - Light burgundy wash */
+  --accent: oklch(0.94 0.02 15);
+  --accent-foreground: oklch(0.35 0.12 15);
+
+  --destructive: oklch(0.55 0.22 25);
+
+  /* Borders - Subtle warm gray */
+  --border: oklch(0.91 0.005 85);
+  --input: oklch(0.91 0.005 85);
+  --ring: oklch(0.38 0.12 15);
+
+  /* Semantic colors */
+  --success: oklch(0.55 0.15 155);
+  --warning: oklch(0.75 0.15 75);
+
+  /* Burgundy scale */
+  --burgundy: oklch(0.38 0.12 15);
+  --burgundy-light: oklch(0.50 0.10 15);
+  --burgundy-dark: oklch(0.28 0.10 15);
+  --cream: oklch(0.985 0.006 85);
+  --warm-gray: oklch(0.50 0.01 60);
+
+  /* Chart colors - Warm, editorial palette */
+  --chart-1: oklch(0.38 0.12 15);  /* Burgundy */
+  --chart-2: oklch(0.55 0.15 155); /* Forest */
+  --chart-3: oklch(0.65 0.12 75);  /* Amber */
+  --chart-4: oklch(0.50 0.08 250); /* Slate blue */
+  --chart-5: oklch(0.60 0.10 30);  /* Terracotta */
+
+  /* Sidebar - Subtle distinction */
+  --sidebar: oklch(0.98 0.004 85);
+  --sidebar-foreground: oklch(0.20 0.02 30);
+  --sidebar-primary: oklch(0.38 0.12 15);
+  --sidebar-primary-foreground: oklch(0.98 0.005 85);
+  --sidebar-accent: oklch(0.94 0.02 15);
+  --sidebar-accent-foreground: oklch(0.35 0.12 15);
+  --sidebar-border: oklch(0.91 0.005 85);
+  --sidebar-ring: oklch(0.38 0.12 15);
+}
+
+.dark {
+  --background: oklch(0.14 0.01 30);
+  --foreground: oklch(0.94 0.005 85);
+
+  --card: oklch(0.18 0.01 30);
+  --card-foreground: oklch(0.94 0.005 85);
+
+  --popover: oklch(0.18 0.01 30);
+  --popover-foreground: oklch(0.94 0.005 85);
+
+  /* Burgundy stays rich in dark mode */
+  --primary: oklch(0.55 0.12 15);
+  --primary-foreground: oklch(0.98 0.005 85);
+
+  --secondary: oklch(0.22 0.01 30);
+  --secondary-foreground: oklch(0.94 0.005 85);
+
+  --muted: oklch(0.22 0.01 30);
+  --muted-foreground: oklch(0.60 0.01 60);
+
+  --accent: oklch(0.25 0.04 15);
+  --accent-foreground: oklch(0.70 0.10 15);
+
+  --destructive: oklch(0.60 0.20 25);
+
+  --border: oklch(0.26 0.01 30);
+  --input: oklch(0.26 0.01 30);
+  --ring: oklch(0.55 0.12 15);
+
+  --success: oklch(0.60 0.15 155);
+  --warning: oklch(0.75 0.15 75);
+
+  --burgundy: oklch(0.55 0.12 15);
+  --burgundy-light: oklch(0.65 0.10 15);
+  --burgundy-dark: oklch(0.40 0.10 15);
+  --cream: oklch(0.94 0.005 85);
+  --warm-gray: oklch(0.60 0.01 60);
+
+  --chart-1: oklch(0.55 0.12 15);
+  --chart-2: oklch(0.60 0.15 155);
+  --chart-3: oklch(0.70 0.12 75);
+  --chart-4: oklch(0.55 0.08 250);
+  --chart-5: oklch(0.65 0.10 30);
+
+  --sidebar: oklch(0.16 0.01 30);
+  --sidebar-foreground: oklch(0.94 0.005 85);
+  --sidebar-primary: oklch(0.55 0.12 15);
+  --sidebar-primary-foreground: oklch(0.98 0.005 85);
+  --sidebar-accent: oklch(0.22 0.02 15);
+  --sidebar-accent-foreground: oklch(0.70 0.10 15);
+  --sidebar-border: oklch(0.26 0.01 30);
+  --sidebar-ring: oklch(0.55 0.12 15);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Editorial heading styles */
+  h1, h2, h3 {
+    font-family: var(--font-newsreader), ui-serif, Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    @apply text-4xl tracking-tight;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Refined focus states */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Elegant card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply shadow-lg shadow-burgundy/5 -translate-y-0.5;
+  }
+
+  /* Stat card with burgundy accent */
+  .stat-card {
+    @apply relative overflow-hidden;
+  }
+
+  .stat-card::before {
+    content: "";
+    @apply absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-burgundy to-burgundy-light opacity-0 transition-opacity duration-300;
+  }
+
+  .stat-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Editorial divider */
+  .divider {
+    @apply h-px bg-gradient-to-r from-transparent via-border to-transparent;
+  }
+
+  /* Subtle page background pattern */
+  .bg-editorial {
+    background-image:
+      radial-gradient(circle at 100% 0%, oklch(0.38 0.12 15 / 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 0% 100%, oklch(0.38 0.12 15 / 0.02) 0%, transparent 40%);
+  }
+}
+
+@layer utilities {
+  /* Text balance for headlines */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Smooth number transitions */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Subtle text gradient for emphasis */
+  .text-gradient {
+    @apply bg-gradient-to-r from-burgundy to-burgundy-light bg-clip-text text-transparent;
+  }
 }
