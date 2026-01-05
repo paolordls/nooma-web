@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans, Newsreader, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/sidebar";
+import { Providers } from "@/components/providers";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -36,12 +37,14 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${newsreader.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        <div className="flex min-h-screen bg-editorial">
-          <Sidebar />
-          <main className="flex-1 px-12 py-10">
-            {children}
-          </main>
-        </div>
+        <Providers>
+          <div className="flex min-h-screen bg-editorial">
+            <Sidebar />
+            <main className="flex-1 px-12 py-10">
+              {children}
+            </main>
+          </div>
+        </Providers>
       </body>
     </html>
   );
