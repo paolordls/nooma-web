@@ -8,7 +8,7 @@ type Note = {
   id: string;
   title: string;
   contentPlain: string | null;
-  isPinned: boolean;
+  isPinned: boolean | null;
   createdAt: string;
   updatedAt: string | null;
   source?: string | null;
